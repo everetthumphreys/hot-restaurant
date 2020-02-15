@@ -10,7 +10,9 @@ const tables=[
 ];
 const waitList=[
 
-]
+];
+
+const IDs=[];
 
 
 
@@ -31,6 +33,14 @@ app.get("/api/wait", (req, res) => {
     res.json(waitList);
 });
 
+app.get("/clearTables",(req,res)=>{
+tables.length=0;
+waitList.length=0;
+IDs.length=0;
+console.log("cleared");
+res.end("tables cleared");
+});
+
 app.get("/*", (req, res) => {
     res.end("default");
 });
@@ -43,13 +53,21 @@ app.listen(PORT, () => {
 app.post("/reservations",(req,res)=>{
     let newTable = req.body;
 
-    addTable(newTable);
-    console.log(newTable);
+    if(IDs.includes(newTable.id)){
+        res.end("duplicate ID");
+    }
+    else{
 
-    res.end("table created");
-
+        addTable(newTable);
+        IDs.push(newTable.id);
+        console.log(newTable);
+    
+        res.end("table created");
+    }
 
 });
+
+
 
 
 

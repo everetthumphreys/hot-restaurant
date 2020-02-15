@@ -40,7 +40,7 @@ tables.length=0;
 waitList.length=0;
 IDs.length=0;
 console.log("cleared");
-res.end("tables cleared");
+res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.get("/*", (req, res) => {
@@ -53,6 +53,8 @@ app.listen(PORT, () => {
 });
 
 app.post("/reservations",(req,res)=>{
+    console.log("recieved post");
+    console.log(req.body);
     let newTable = req.body;
 
     if(IDs.includes(newTable.ID)){

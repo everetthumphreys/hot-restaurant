@@ -18,12 +18,12 @@ const IDs=[];
 
 
 app.get("/tables", (req, res) => {
-    res.sendFile(path.join(__dirname, "/HTML/tables.html"));
+    res.sendFile(path.join(__dirname, "tables.html"));
 
 });
 
 app.get("/reservations", (req, res) => {
-    res.sendFile(path.join(__dirname, "/HTML/reserve.html"));
+    res.sendFile(path.join(__dirname, "reserve.html"));
 
 });
 
@@ -40,11 +40,11 @@ tables.length=0;
 waitList.length=0;
 IDs.length=0;
 console.log("cleared");
-res.end("tables cleared");
+res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.get("/*", (req, res) => {
-    res.sendFile(path.join(__dirname, "./HTML/index.html"));
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
 
@@ -53,15 +53,17 @@ app.listen(PORT, () => {
 });
 
 app.post("/reservations",(req,res)=>{
+    console.log("recieved post");
+    console.log(req.body);
     let newTable = req.body;
 
-    if(IDs.includes(newTable.id)){
+    if(IDs.includes(newTable.ID)){
         res.end("duplicate ID");
     }
     else{
 
         addTable(newTable);
-        IDs.push(newTable.id);
+        IDs.push(newTable.ID);
         console.log(newTable);
     
         res.end("table created");

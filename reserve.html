@@ -37,24 +37,24 @@
                             <form>
                                 <div class="form-group">
                                     <label for="Name">Name:</label>
-                                    <input type="Name" class="form-control" id="name" aria-describedby="inputName">
+                                    <input type="Name" class="form-control" id="name" aria-describedby="name">
                                 </div>
                                 <div class="form-group">
                                     <label for="phone-number">Phone Number:</label>
-                                    <input type="phone-number" class="form-control" id="inputName"
-                                        aria-describedby="inputName">
+                                    <input type="phone-number" class="form-control" id="phone"
+                                        aria-describedby="phone">
                                 </div>
                                 <div class="form-group">
                                     <label for="email-address">Email:</label>
-                                    <input type="email-address" class="form-control" id="inputName"
-                                        aria-describedby="inputName">
+                                    <input type="email-address" class="form-control" id="email"
+                                        aria-describedby="email">
                                 </div>
                                 <div class="form-group">
                                     <label for="unique-id">Unique ID:</label>
-                                    <input type="unique-id" class="form-control" id="inputName"
-                                        aria-describedby="inputName">
+                                    <input type="unique-id" class="form-control" id="ID"
+                                        aria-describedby="ID">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" id="createTable">Submit</button>
                             </form>
                         </li>
                     </ul>
@@ -79,6 +79,36 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/ef9e0f519e.js" crossorigin="anonymous"></script>
+
+<script>
+
+$("#createTable").on("click",function(){
+
+    let name = $("#name").val();
+    let phone = $("#phone").val();
+    let email = $("#email").val();
+    let ID = $("#ID").val();
+
+    const table = {
+        name:name,
+        number:phone,
+        email:email,
+        ID:ID
+    }
+
+    $.post("/reservations",table).then(data=>{
+        console.log("added table");
+    })
+
+
+
+});
+
+
+
+</script>
+
+
 </body>
 
 </html>

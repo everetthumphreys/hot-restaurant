@@ -18,11 +18,13 @@ const IDs=[];
 
 
 app.get("/tables", (req, res) => {
-    res.end("tables");
+    res.sendFile(path.join(__dirname, "/HTML/tables.html"));
+
 });
 
 app.get("/reservations", (req, res) => {
-    res.end("reservations");
+    res.sendFile(path.join(__dirname, "/HTML/reserve.html"));
+
 });
 
 app.get("/api/tables", (req, res) => {
@@ -42,7 +44,7 @@ res.end("tables cleared");
 });
 
 app.get("/*", (req, res) => {
-    res.end("default");
+    res.sendFile(path.join(__dirname, "./HTML/index.html"));
 });
 
 

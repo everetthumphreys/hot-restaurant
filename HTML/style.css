@@ -6,3 +6,55 @@
     width: 220px;
 }
 
+tittle {
+    text-align: center;
+  }
+  
+  .text-center.tittle {
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: rgb(200,194,194);
+  }
+  
+  
+  
+  #separate-line {
+    border-right: solid;
+    border-color: black;
+    padding-right: 10px;
+    border-width: 1px;
+  }
+  
+  #current-reservations {
+    height: 674px;
+    border: solid;
+    border-width: 1px;
+  }
+  
+  #box-tittle {
+    border-bottom: solid;
+    border-width: 1px;
+    background: rgb(233,236,239);
+    border-radius: 10px;
+    border-color: rgb(217,210,210);
+  }
+  
+  
+  
+  #table-reserved {
+    border: solid;
+    border-width: 1px;
+    padding: 18px;
+    background: rgb(233,236,239);
+    border-radius: 10px;
+    border-color: rgb(217,210,210);
+  }
+  
+  #reservations {
+    border: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: rgb(217,210,210);
+  }
+  
+  

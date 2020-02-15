@@ -5,6 +5,13 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const tables=[
+
+];
+const waitList=[
+
+]
+
 
 
 
@@ -17,11 +24,11 @@ app.get("/reservations", (req, res) => {
 });
 
 app.get("/api/tables", (req, res) => {
-    res.end("api tables");
+    res.json(tables);
 });
 
 app.get("/api/wait", (req, res) => {
-    res.end("api wait");
+    res.json(waitList);
 });
 
 app.get("/*", (req, res) => {
@@ -32,3 +39,25 @@ app.get("/*", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Listening on port:${PORT}`);
 });
+
+app.post("/reservations",(req,res)=>{
+    let newTable = req.body;
+
+    addTable(newTable);
+    console.log(newTable);
+
+    res.end("table created");
+
+
+});
+
+
+
+function addTable(newTable){
+    if(tables.length <5){
+        tables.push(newTable);
+    }
+    else{
+        waitList.push(newTable);
+    }
+}

@@ -30,8 +30,8 @@
                     <div class="card-header">
                         Table Reservation
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
+                    <ul class="list-group list-group-flush" id="tableList">
+                        <!-- <li class="list-group-item">
                             <h2 id="table-reserved"><button class="btn btn-primary" type="button">1</button>&nbsp;|
                                 table 1
                             </h2>
@@ -55,7 +55,7 @@
                             <h2 id="table-reserved"><button class="btn btn-primary" type="button">5</button>&nbsp;|
                                 table 5
                             </h2>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -67,11 +67,11 @@
                     <div class="card-header">
                         Table Reservation
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
+                    <ul class="list-group list-group-flush" id="waitList">
+                        <!-- <li class="list-group-item">
                             <h2 id="table-reserved"><button class="btn btn-primary" type="button">1</button>&nbsp;|
                                 table 1</h2>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -93,6 +93,72 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/ef9e0f519e.js" crossorigin="anonymous"></script>
+
+
+    <script>
+        displayTables();
+        displayWaitList();
+        function displayTables() {
+
+            $.ajax({
+                method: "GET",
+                url: "/api/tables"
+            }).then(response => {
+                console.log(response);
+
+                response.forEach((element, i) => {
+                    let item =
+                        `<li class="list-group-item">
+                            <h2 id="table-reserved"><button class="btn btn-primary" type="button">Table: ${i + 1}</button>&nbsp;
+                              <p>  Name: ${element.name} </p>
+                               <p> Phone: ${element.number} </p>
+                               <p> Email: ${element.email} </p>
+                               <p> ID: ${element.ID} </p>
+                            </h2>
+                        </li>`;
+
+                    $("#tableList").append(item);
+
+                });
+
+
+            });
+
+        }//displayTables
+
+
+        function displayWaitList() {
+
+            $.ajax({
+                method: "GET",
+                url: "/api/wait"
+            }).then(response => {
+                console.log(response);
+
+                response.forEach((element, i) => {
+                    let item =
+                        `<li class="list-group-item">
+                            <h2 id="table-reserved"><button class="btn btn-primary" type="button">Table: ${i + 1}</button>&nbsp;
+                              <p>  Name: ${element.name} </p>
+                               <p> Phone: ${element.number} </p>
+                               <p> Email: ${element.email} </p>
+                               <p> ID: ${element.ID} </p>
+                            </h2>
+                        </li>`;
+
+                    $("#waitList").append(item);
+
+                });
+
+
+            });
+
+
+        }
+
+
+
+    </script>
 
 </body>
 
